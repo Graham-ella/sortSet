@@ -26,14 +26,14 @@ void readFile() {
 }
 
 //冒泡排序(开始）
-void bubbleSort() {
-	clock_t start, end;
-	int n;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
-	start = clock();
+void bubbleSort(int n) {
+	//clock_t start, end;
+	//int n;
+	//cout << "请输入数据的个数:";
+	//cin >> n;
+	//createFile(n);
+	//readFile();
+	//start = clock();
 	int flag = 0;//标记变量，用来判断内层循环是否发生了交换
 	for (int i = 1; i < n; i++) {
 		flag = 0;
@@ -44,21 +44,21 @@ void bubbleSort() {
 			}
 		}
 		if (flag == 0) {//如果没有发生交换，说明元素已经有序，直接输出
-			for (int i = 1; i <= n; i++) {
-				cout << A[i] << endl;
-			}
-			end = clock();
-			cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+			//for (int i = 1; i <= n; i++) {
+				//cout << A[i] << endl;
+			//}
+			//end = clock();
+			//cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 			return;
 		}
 	}
 	
-	for (int i = 1; i <= n; i++) {
-		cout << A[i] << endl;
-	}
+//	for (int i = 1; i <= n; i++) {
+	//	cout << A[i] << endl;
+//	}
 
-	end = clock();
-	cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	//end = clock();
+	//cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 
 }
 
@@ -72,14 +72,14 @@ void Swap(record& x, record& y) {
 
 
 //直接选择排序（开始）
-void selectSort() {
-	clock_t start, end;
-	int n;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
-	start = clock();
+void selectSort(int n) {
+	//clock_t start, end;
+	//int n;
+	//cout << "请输入数据的个数:";
+	//cin >> n;
+	//createFile(n);
+	//readFile();
+	//start = clock();
 	int min_key, min_index;
 	for (int i = 1; i < n; i++) {
 		min_index = i;
@@ -95,27 +95,27 @@ void selectSort() {
 		}
 	}
 
-	for (int i = 1; i <= n; i++) {
-		cout << A[i] << endl;
-	}
+//	for (int i = 1; i <= n; i++) {
+	//	cout << A[i] << endl;
+	//}
 	
-	end = clock();
+	//end = clock();
 
-	cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	//cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 }
 //直接选择排序（结束）
 
 
 //（直接)插入排序（开始）
-void insertSort() {
-	clock_t start, end;
-	int n;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
+void insertSort(int n) {
+	//clock_t start, end;
+	//int n;
+	//cout << "请输入数据的个数:";
+	//cin >> n;
+	//createFile(n);
+	//readFile();
 	
-	start = clock();
+	//start = clock();
 	
 	int i, j;
 	
@@ -127,27 +127,28 @@ void insertSort() {
 		}
 	}
 	
-	for (int i = 1; i <= n; i++) {
-		cout << A[i] << endl;
-	}
+//	for (int i = 1; i <= n; i++) {
+	//	cout << A[i] << endl;
+//	}
 
-	end = clock();
+	//end = clock();
 
-	cout << "直接插入排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	//cout << "直接插入排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 
 }
 //（直接)插入排序（结束）
 
 
 //希尔排序（开始）
-void shellSort() {//选用的增量序列为1,2,4,8.....
-	clock_t start, end;
-	int n,d;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
-	start = clock();
+void shellSort(int n) {//选用的增量序列为1,2,4,8.....
+	//clock_t start, end;
+	//int n;
+	int d;
+	//cout << "请输入数据的个数:";
+	//cin >> n;
+	//createFile(n);
+	//readFile();
+	//start = clock();
 	int i, k,q;
 	for (d = n / 2; d >= 1; d = d / 2) {
 		for (i = 1; i <= d; i++) {
@@ -182,12 +183,12 @@ void shellSort() {//选用的增量序列为1,2,4,8.....
 			}*/
 		}
 	}
-	for (int i = 1; i <= n; i++) {
-		cout << A[i] << endl;
-	}
-	end = clock();
+	//for (int i = 1; i <= n; i++) {
+		//cout << A[i] << endl;
+	//}
+	//end = clock();
 
-	cout << "希尔排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	//cout << "希尔排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 }
 //希尔排序（结束）
 
@@ -236,4 +237,55 @@ void display(int n) {
 	for (int i = 1; i <= n; i++) {
 		cout << A[i] << endl;
 	}
+}
+
+
+//堆排序（开始）
+//(一）怎么利用无序的序列建堆
+//（二）取除元素后怎么调整堆
+void heapSort(int n) {
+	int i;
+	for (i = n / 2; i >= 1; i--) {
+		heapAdjust(i, n);
+	}//建立小根堆
+	for (i = n; i >= 2; i--) {
+		Swap(A[1], A[i]);
+		heapAdjust(1, i - 1);
+	}
+}
+
+void heapAdjust(int first, int last) {
+	
+	int r = first;
+	while (r <= last / 2) {//r为非叶子结点
+		if ((r == last / 2) && (last % 2 == 0)) {
+			if (A[r] < A[2 * r]) {
+				Swap(A[r], A[2 * r]);
+			}
+			r = last;
+		}
+		else if ((A[r] < A[2 * r]) &&( A[2 * r] >= A[2 * r + 1])) {
+			Swap(A[r], A[2*r]);
+			r = 2*r;
+		}
+		else if ((A[r] < A[2 * r + 1]) &&( A[2 * r + 1] > A[2 * r])) {
+			Swap(A[r], A[2 * r+1]);
+			r = 2 * r+1;
+		}
+		else {
+			r = last;
+		}
+	}
+	
+}
+//堆排序（结束）
+
+void showMenu() {
+	cout << "1、冒泡排序" << endl;
+	cout << "2、快速排序" << endl;
+	cout << "3、直接选择排序" << endl;
+	cout << "4、堆排序" << endl;
+	cout << "5、插入排序" << endl;
+	cout << "6、希尔排序" << endl;
+	cout << "0、退出" << endl;
 }
