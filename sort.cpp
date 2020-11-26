@@ -48,7 +48,7 @@ void bubbleSort() {
 				cout << A[i] << endl;
 			}
 			end = clock();
-			cout << "time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+			cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 			return;
 		}
 	}
@@ -58,7 +58,7 @@ void bubbleSort() {
 	}
 
 	end = clock();
-	cout << "time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 
 }
 
@@ -70,5 +70,70 @@ void Swap(record& x, record& y) {
 }
 //冒泡排序（结束）
 
-//快速排序（开始）
 
+//直接选择排序（开始）
+void selectSort() {
+	clock_t start, end;
+	int n;
+	cout << "请输入数据的个数:";
+	cin >> n;
+	createFile(n);
+	readFile();
+	start = clock();
+	int min_key, min_index;
+	for (int i = 1; i < n; i++) {
+		min_index = i;
+		min_key = A[i];
+		for (int j = i + 1; j <= n; j++) {
+			if (A[j] < min_key) {
+				min_key = A[j];
+				min_index = j;
+			}
+		}
+		if (min_index != i) {
+			Swap(A[i], A[min_index]);
+		}
+	}
+
+	for (int i = 1; i <= n; i++) {
+		cout << A[i] << endl;
+	}
+	
+	end = clock();
+
+	cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+}
+//直接选择排序（结束）
+
+
+//（直接)插入排序（开始）
+void insertSort() {
+	clock_t start, end;
+	int n;
+	cout << "请输入数据的个数:";
+	cin >> n;
+	createFile(n);
+	readFile();
+	
+	start = clock();
+	
+	int i, j;
+	
+	for (i = 2; i <= n; i++) {
+		j = i;
+		while (A[j] < A[j - 1]&& j > 1) {
+			Swap(A[j], A[j - 1]);
+			j--;
+		}
+	}
+	
+	for (int i = 1; i <= n; i++) {
+		cout << A[i] << endl;
+	}
+
+	end = clock();
+
+	cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+
+}
+//（直接)插入排序（结束）

@@ -6,5 +6,8 @@ int main() {
 	end = clock();
 	cout << "time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 	*/
-	bubbleSort();
+	
+	//bubbleSort();
+	//selectSort();
+	insertSort();
 }
