@@ -133,7 +133,107 @@ void insertSort() {
 
 	end = clock();
 
-	cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "直接插入排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 
 }
 //（直接)插入排序（结束）
+
+
+//希尔排序（开始）
+void shellSort() {//选用的增量序列为1,2,4,8.....
+	clock_t start, end;
+	int n,d;
+	cout << "请输入数据的个数:";
+	cin >> n;
+	createFile(n);
+	readFile();
+	start = clock();
+	int i, k,q;
+	for (d = n / 2; d >= 1; d = d / 2) {
+		for (i = 1; i <= d; i++) {
+			k = 0;
+			while (i + k * d <= n) {
+				k++;
+			}
+			k = k - 1;
+			for (int s = 1; s <= k; s++) {
+				q = s;
+				while (A[i + q * d] < A[i + (q - 1) * d]&&q>=1) {
+					Swap(A[i + q * d], A[i + (q - 1) * d]);
+					q--;
+				}
+			}
+
+			/*
+			while (k >= 1) {
+				if (A[i + k * d] < A[i + (k - 1) * d]) {
+					Swap(A[i + k * d], A[i + (k - 1) * d]);
+					k--;
+				}
+				else {
+					k--;
+				}
+			}
+			*/
+			/*
+			while (A[i + k * d] < A[i + (k - 1) * d] && k >= 1) {
+				Swap(A[i + k * d], A[i + (k - 1) * d]);
+				k--;
+			}*/
+		}
+	}
+	for (int i = 1; i <= n; i++) {
+		cout << A[i] << endl;
+	}
+	end = clock();
+
+	cout << "希尔排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+}
+//希尔排序（结束）
+
+
+
+//快速排序（开始）
+int findPivot(int low, int high) {
+	int flag;
+	flag = A[low];
+	for (int k = low + 1; k <= high; k++) {
+		if (A[k] > flag) {
+			return k;
+		}
+		else if (A[k] < flag) {
+			return low;
+		}
+	}
+	return 0;//数据全部相同，或者只有一个数据
+}
+
+int partition(int low, int high,int pivot) {
+	int l, r;
+	do {
+		for (l = low; A[l] < A[pivot]; l++);
+		for (r = high; A[r] >= A[pivot]; r--);
+		if (l < r) {
+			Swap(A[l], A[r]);
+		}
+	}while (l <= r);
+	return l;
+}
+
+void quickSort(int low, int high) {
+	int pivot;
+	int k;
+	pivot = findPivot(low, high);
+	if (pivot != 0) {
+		k = partition(low, high, pivot);
+		quickSort(low, k - 1);
+		quickSort(k, high);
+	}
+}
+//快速排序（结束）
+
+void display(int n) {
+	for (int i = 1; i <= n; i++) {
+		cout << A[i] << endl;
+	}
+}
