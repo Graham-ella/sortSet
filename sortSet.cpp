@@ -1,40 +1,5 @@
 ﻿#include "head.h"
 int main() {
-	/*
-	clock_t start, end;
-	start = clock();
-	end = clock();
-	cout << "time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
-	*/
-	
-	//bubbleSort();
-	//selectSort();
-	//insertSort();
-	//shellSort();
-	
-	/*
-	int n;
-	clock_t start, end;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
-	start = clock();
-	quickSort(1, n);
-	end = clock();
-	display(n);
-	cout << "快速排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
-	*/
-
-	/*
-	int n;
-	cout << "请输入数据的个数:";
-	cin >> n;
-	createFile(n);
-	readFile();
-	heapSort(n);
-	display(n);
-	*/
 	clock_t start, end;
 	int n;
 	int select = 0;
@@ -50,7 +15,7 @@ int main() {
 				start = clock();
 				bubbleSort(n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "冒泡排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
@@ -63,7 +28,7 @@ int main() {
 				start = clock();
 				quickSort(1, n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "快速排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
@@ -76,7 +41,7 @@ int main() {
 				start = clock();
 				selectSort(n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "直接选择排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
@@ -89,7 +54,7 @@ int main() {
 				start = clock();
 				heapSort(n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "堆排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
@@ -102,7 +67,7 @@ int main() {
 				start = clock();
 				insertSort(n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "插入排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
@@ -115,11 +80,25 @@ int main() {
 				start = clock();
 				shellSort(n);
 				end = clock();
-				display(n);
+				//display(n);
 				cout << "希尔排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
 				system("pause");
 				system("cls");
 				break;
+			case 7:
+				cout << "请输入数据的个数:";
+				cin >> n;
+				createFile(n);//生成随机数
+				readFile();//给A赋值
+				start = clock();
+				radixSort(n);
+				end = clock();
+				//display(n);
+				cout << "基数排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+				system("pause");
+				system("cls");
+				break;
+
 			case 0:
 				cout << "欢迎下次再来!" << endl;
 				system("pause");

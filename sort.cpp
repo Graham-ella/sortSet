@@ -141,16 +141,15 @@ void insertSort(int n) {
 
 //希尔排序（开始）
 void shellSort(int n) {//选用的增量序列为1,2,4,8.....
-	//clock_t start, end;
-	//int n;
+	
 	int d;
-	//cout << "请输入数据的个数:";
-	//cin >> n;
-	//createFile(n);
-	//readFile();
-	//start = clock();
-	int i, k,q;
+	
+	int i;
+	int k;
+	int j;
+
 	for (d = n / 2; d >= 1; d = d / 2) {
+		/*
 		for (i = 1; i <= d; i++) {
 			k = 0;
 			while (i + k * d <= n) {
@@ -165,36 +164,26 @@ void shellSort(int n) {//选用的增量序列为1,2,4,8.....
 				}
 			}
 
-			/*
-			while (k >= 1) {
-				if (A[i + k * d] < A[i + (k - 1) * d]) {
-					Swap(A[i + k * d], A[i + (k - 1) * d]);
-					k--;
-				}
-				else {
-					k--;
-				}
-			}
-			*/
-			/*
-			while (A[i + k * d] < A[i + (k - 1) * d] && k >= 1) {
-				Swap(A[i + k * d], A[i + (k - 1) * d]);
-				k--;
-			}*/
+		}
+		*/
+		for (int i = d + 1; i <= n; i++) {
+			 j = i;
+			 while (j - d >= 1 && A[j] < A[j - d]) {
+				 Swap(A[j], A[j - d]);
+				 j = j - d;
+			 }
 		}
 	}
-	//for (int i = 1; i <= n; i++) {
-		//cout << A[i] << endl;
-	//}
-	//end = clock();
-
-	//cout << "希尔排序time = " << double(double(end) - double(start)) / CLOCKS_PER_SEC << "s" << endl;
+	
 }
 //希尔排序（结束）
 
 
 
 //快速排序（开始）
+
+//实现（一）
+/*
 int findPivot(int low, int high) {
 	int flag;
 	flag = A[low];
@@ -231,6 +220,32 @@ void quickSort(int low, int high) {
 		quickSort(k, high);
 	}
 }
+*/
+
+//实现（二）
+void quickSort(int low, int high) {
+	if (low > high) {
+		return;
+	}
+	int pivot = A[low];
+	int i = low, j = high;
+
+	while (i != j)
+	{
+		while (A[j] >= pivot && j > i) { j--; }
+		while (A[i] <= pivot && i < j) { i++; }
+
+		if (i < j) { Swap(A[i], A[j]); }
+	}
+
+	A[low] = A[i];
+	A[i] = pivot;
+
+	quickSort(i + 1, high);
+	quickSort(low, i - 1);
+
+}
+
 //快速排序（结束）
 
 void display(int n) {
@@ -280,6 +295,59 @@ void heapAdjust(int first, int last) {
 }
 //堆排序（结束）
 
+
+//基数排序（开始）
+int maxBit(int n) {
+	int maxData = A[1];
+	for (int i = 2; i <= n; i++) {
+		if (A[i] > maxData) {
+			maxData = A[i];
+		}
+	}
+	int d = 1;
+	while (maxData >= 10) {
+		maxData /= 10;
+		d++;
+	}
+	return d;
+}
+
+void radixSort(int n) {
+	int d = maxBit(n);
+	int* temp = new int[n+1];//临时数组，存储当前位排序过后的数组
+	temp[0] = n;//0号位置不存数据，存数据的总个数
+	int* count = new int[10];//象征0-9这10个筒
+	int radix = 1;
+	int i, j, k;
+	for (i = 1; i <= d; i++) {//共有d个关键字，所以要排d趟
+		for (j = 0; j < 10; j++) {
+			count[j] = 0;//对每个桶置零
+		}
+		for (j = 1; j <= n; j++) {
+			k = (A[j]/radix) % 10;
+			count[k]++;//统计每个桶中的数据个数
+		}
+		for (j = 1; j <= 9; j++) {
+			count[j] += count[j - 1];//将temp中的位置分给每个桶
+		}
+		for (j = n; j >= 1; j--) {
+			k = (A[j] / radix) % 10;
+			temp[count[k]] = A[j];
+			count[k]--;
+		}
+		for (j = 1; j <= n; j++) {
+			A[j] = temp[j];
+		}
+		radix = 10 * radix;
+	}
+	
+	delete[] temp;
+	delete[] count;
+}
+//基数排序（结束）
+
+
+//菜单栏
 void showMenu() {
 	cout << "1、冒泡排序" << endl;
 	cout << "2、快速排序" << endl;
@@ -287,5 +355,9 @@ void showMenu() {
 	cout << "4、堆排序" << endl;
 	cout << "5、插入排序" << endl;
 	cout << "6、希尔排序" << endl;
+	cout << "7、基数排序" << endl;
 	cout << "0、退出" << endl;
 }
+
+
+
